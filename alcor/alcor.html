@@ -1285,7 +1285,10 @@ blockquote.quote-wrap::after {
 /*
 *   ANSWER ================================
 */
-
+.answer img, .answer p img {
+    max-width: 100%;
+    height: auto;
+}
 .question {
     padding: 10px 0 0;
     min-height: 35px;
@@ -1293,7 +1296,7 @@ blockquote.quote-wrap::after {
 
 
 .user {
-    float: left;
+    text-align: center;
     margin: -3px 10px 0 0;
     padding: 0;}
 
@@ -1305,17 +1308,29 @@ blockquote.quote-wrap::after {
     border-radius: 50px;
 }
 
-.user2 {
-    float: right;
-    margin: -3px 10px 0 0;
-    padding: 0;}
+.asker-label { 
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+.asker-label::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    display: inline-block;
+    height: 2px;
+    width: 36px;
+    margin-left: -18px;
+    line-height: 0.7em;
+    font-size: 22px;
+    white-space: nowrap;
+    background: {color:link};
+}
 
-.user2 img {
-    width: 35px;
-    height: 35px;
-    -moz-border-radius: 50px;
-    -webkit-border-radius: 50px;
-    border-radius: 50px;
+.question p, .answer2 p {
+    width: 80%;
+    margin-left: 10%;
 }
 
 .question .label + p { display: inline;}
@@ -1625,26 +1640,34 @@ ul.social a, ul.social a:visited { color: {color:Sidebar circle};}
             {/block:Video}
 
             {block:Answer}
-              <div class="answer">
+            <div class="answer">
 
-                  <div class="user">
-                      <img src="{AskerPortraitURL-48}"/>
-                  </div>
-                  <div class="question">
-                      <span class="label">{Asker}:</span> {Question}
-                  </div>
-                  {block:Answerer}
-              <div class="answer2">
-                    <div class="user2">
-                      <img src="{AnswererPortraitURL-48}"/>
-                  </div>
-                  <div class="question">
-                      <span class="label">{Answerer}:</span> {Answer}
-                  </div>
+                <div class="question-wrap">
+                    <div class="question">
+                        <p>{Question}</p>
+                    </div>
                   
-              </div>
-              {/block:Answerer}
-              {Replies}
+                    <div class="user">
+                        <img src="{AskerPortraitURL-48}"/>
+                        <div class="label asker-label">{Asker}</div> 
+                    </div>
+                </div>
+
+                {block:Answerer}
+                <div class="answer2">
+                    <div class="question">
+                        <p>{Answer}</p>
+                    </div>
+                    <div class="user">
+                          <img src="{AnswererPortraitURL-48}"/>
+                          <div class="label asker-label">{Answerer}</div> 
+                    </div>
+                    
+                      
+                </div>
+                {/block:Answerer}
+                
+                <p>{Replies}</p>
 
               </div>
               
